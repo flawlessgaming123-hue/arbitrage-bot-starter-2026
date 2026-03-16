@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "telegram": {
+      "command": "python",
+      "args": ["-m", "mcp_telegram_server"],
+      "env": {
+        "TELEGRAM_BOT_TOKEN": "${TELEGRAM_BOT_TOKEN}",
+        "TELEGRAM_CHAT_ID": "${TELEGRAM_CHAT_ID}"
+      }
+    },
+    "postgres-prices": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-server-postgres", "${DATABASE_URL}"],
+      "env": {
+        "DATABASE_URL": "${DATABASE_URL}"
+      }
+    }
+  }
+}

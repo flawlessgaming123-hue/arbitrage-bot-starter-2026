@@ -1,0 +1,43 @@
+{
+  "project": "arbitrage-bot",
+  "version": "0.1.0",
+  "stories": [
+    {
+      "id": "US-001",
+      "title": "Fetch live prices from Polymarket and Kalshi APIs",
+      "description": "Create async price fetchers for both markets. Store normalized prices in Postgres via MCP. Include retry logic and rate limiting.",
+      "status": "todo",
+      "passes": false
+    },
+    {
+      "id": "US-002",
+      "title": "Build arbitrage scanner that detects >0.5% spreads",
+      "description": "Compare equivalent contracts across markets. Calculate net spread after estimated fees. Rank by profit potential. Output scan reports to reports/ directory.",
+      "status": "todo",
+      "passes": false
+    },
+    {
+      "id": "US-003",
+      "title": "Implement risk manager with 2% portfolio cap",
+      "description": "Validate every proposed trade against portfolio risk limits. Simulate worst-case loss. Block trades that violate the 2% single-position cap. Log all decisions to risk.log.",
+      "status": "todo",
+      "passes": false
+    },
+    {
+      "id": "US-004",
+      "title": "Wire up Telegram notifications for high-edge alerts",
+      "description": "When scanner finds >1% edge, send formatted alert via Telegram MCP server. Include market names, spread %, and recommended position size.",
+      "status": "todo",
+      "passes": false
+    },
+    {
+      "id": "US-005",
+      "title": "End-to-end paper trading simulation",
+      "description": "Run the full pipeline: fetch prices -> scan -> risk check -> simulated execution. Track P&L in a local SQLite ledger. Print summary report.",
+      "status": "todo",
+      "passes": false
+    }
+  ],
+  "completion_criteria": "All stories have passes=true and tests pass",
+  "notes": "Ralph checks: jq '[.stories[] | select(.passes == false)] | length' prd.json"
+}

@@ -1,0 +1,31 @@
+# Secrets
+.env
+*.key
+*.pem
+*.secret
+credentials.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project
+data/*.json
+!data/.gitkeep
+reports/
+risk.log
+logs/*.json
+logs/cost.csv
+!logs/.gitkeep

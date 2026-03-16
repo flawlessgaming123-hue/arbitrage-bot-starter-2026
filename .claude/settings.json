@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'input=$(cat); cmd=$(echo \"$input\" | jq -r \".tool_input.command // empty\"); if echo \"$cmd\" | grep -qE \"git\\s+(add|commit)\"; then staged=$(git diff --cached --name-only 2>/dev/null; git diff --name-only 2>/dev/null); if echo \"$staged\" | grep -qiE \"\\.(env|key|secret|pem|credentials)\"; then echo \"BLOCKED: refusing to stage/commit sensitive files\" >&2; exit 2; fi; fi; exit 0'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash -c 'input=$(cat); filepath=$(echo \"$input\" | jq -r \".tool_input.file_path // empty\"); if [ -n \"$filepath\" ] && echo \"$filepath\" | grep -qE \"\\.py$\"; then cd \"$CLAUDE_PROJECT_DIR\" && ruff check --fix \"$filepath\" 2>/dev/null; fi; exit 0'"
+          }
+        ]
+      }
+    ]
+  }
+}
